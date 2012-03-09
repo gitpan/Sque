@@ -2,16 +2,16 @@ use strict;
 use warnings;
 package Sque;
 {
-  $Sque::VERSION = '0.001';
+  $Sque::VERSION = '0.002';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
 use Net::STOMP::Client;
 
-# ABSTRACT: Background job processing based on Resque, using Stomp
-
 use Sque::Job;
 use Sque::Worker;
+
+# ABSTRACT: Background job processing based on Resque, using Stomp
 
 subtype 'Sugar::Stomp' => as class_type('Net::STOMP::Client');
 
@@ -79,10 +79,10 @@ sub key {
     '/queue/' . $self->namespace . '/' . shift;
 }
 
-
 __PACKAGE__->meta->make_immutable();
 
 1;
+
 
 __END__
 =pod
@@ -93,7 +93,50 @@ Sque - Background job processing based on Resque, using Stomp
 
 =head1 VERSION
 
-version 0.001
+version 0.002
+
+=head1 SYNOPSIS
+
+First you create a Sesque instance where you configure the L<Stomp>
+backend and then you can start sending jobs to be done by workers:
+
+    use Sque;
+
+    my $s = Sque->new( stomp => '127.0.0.1:61613' );
+
+    $s->push( my_queue => {
+        class => 'My::Task',
+        args => [ 'Hello world!' ]
+    });
+
+Background jobs can be any perl module that implement a perform() function.
+The Sque::Job object is passed as the only argument to this function:
+
+    package My::Task;
+    use strict;
+    use 5.10.0;
+
+    sub perform {
+        my $job = shift;
+        say $job->args->[0];
+    }
+
+    1;
+
+Finally, you run your jobs by instancing a L<Sque::Worker> and telling it
+to listen to one or more queues:
+
+    use Sque;
+
+    my $w = Sque->new( stomp => '127.0.0.1:61613' )->worker;
+    $w->add_queue('my_queue');
+    $w->work;
+
+=head1 DESCRIPTION
+
+This is a copy of L<resque-perl|https://github.com/diegok/resque-perl>
+by L<Diego Kuperman|https://github.com/diegok> simplified a little bit
+(for better or worse) and made to work with any stomp server rather than Redis.
 
 =head1 ATTRIBUTES
 
@@ -114,27 +157,30 @@ A L<Sque::Worker> on this sque instance.
 =head2 push
 
 Pushes a job onto a queue. Queue name should be a string and the
-item should be a Sque::Job object or a hashref containing:
+item should be a L<Sque::Job> object or a hashref containing:
 class - The String name of the job class to run.
 args - Any arrayref of arguments to pass the job.
 
-Example
-$sque->push( archive => { class => 'Archive', args => [ 35, 'tar' ] } )
+Example:
+
+    $sque->push( archive => { class => 'Archive', args => [ 35, 'tar' ] } )
 
 =head2 pop
 
 Pops a job off a queue. Queue name should be a string.
-Returns a Sque::Job object.
-
-=head2 new_job
-
-Build a Sque::Job object on this system for the given
-hashref(see Sque::Job) or string(payload for object).
+Returns a l<Sque::Job> object.
 
 =head2 key
 
-Concatenate $self->namespace with the received array of names
+Concatenate C<$self->namespace> with the received array of names
 to build a redis key name for this sque instance.
+
+=head2 new_job
+
+Build a L<Sque::Job> object on this system for the given
+hashref(see L<Sque::Job>) or string(payload for object).
+
+=head1 ATTRIBUTES
 
 =head1 HELPER METHODS
 

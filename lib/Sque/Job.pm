@@ -1,6 +1,6 @@
 package Sque::Job;
 {
-  $Sque::Job::VERSION = '0.001';
+  $Sque::Job::VERSION = '0.002';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -79,7 +79,6 @@ sub stringify {
         $self->encoder->encode( $self->args )
     );
 }
-
 sub queue_from_class {
     my $class = shift->class;
     $class =~ s/://g;
@@ -96,11 +95,10 @@ sub perform {
     &{$self->class . '::perform'}($self);
 }
 
-
-
 __PACKAGE__->meta->make_immutable();
 
 1;
+
 
 __END__
 =pod
@@ -111,7 +109,7 @@ Sque::Job - Sque job container
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 ATTRIBUTES
 

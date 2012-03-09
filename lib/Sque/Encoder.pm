@@ -1,6 +1,6 @@
 package Sque::Encoder;
 {
-  $Sque::Encoder::VERSION = '0.001';
+  $Sque::Encoder::VERSION = '0.002';
 }
 use Any::Moose 'Role';
 use JSON;
@@ -25,7 +25,7 @@ Sque::Encoder - Any::Moose role for encoding Sque structures
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

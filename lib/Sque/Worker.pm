@@ -1,6 +1,6 @@
 package Sque::Worker;
 {
-  $Sque::Worker::VERSION = '0.001';
+  $Sque::Worker::VERSION = '0.002';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -81,6 +81,7 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
+
 __END__
 =pod
 
@@ -90,7 +91,7 @@ Sque::Worker - Does the hard work of babysitting Sque::Job's
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 ATTRIBUTES
 

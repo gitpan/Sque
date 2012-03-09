@@ -13,15 +13,15 @@
 
 #     ABSTRACT => q[Background job processing based on Resque, using Stomp]
 #     AUTHOR => [q[William Wolf <throughnothing@gmail.com>]]
-#     BUILD_REQUIRES => {  }
+#     BUILD_REQUIRES => { Test::More=>q[0] }
 #     CONFIGURE_REQUIRES => { ExtUtils::MakeMaker=>q[6.30] }
 #     DISTNAME => q[Sque]
 #     EXE_FILES => []
 #     LICENSE => q[unrestricted]
 #     NAME => q[Sque]
-#     PREREQ_PM => { DateTime=>q[0], Scalar::Util=>q[0], Try::Tiny=>q[0], warnings=>q[0], overload=>q[0], strict=>q[0], Any::Moose=>q[0], POSIX=>q[0], JSON=>q[0], List::MoreUtils=>q[0], UNIVERSAL::require=>q[0], Sys::Hostname=>q[0], Net::STOMP::Client=>q[0] }
+#     PREREQ_PM => { DateTime=>q[0], Scalar::Util=>q[0], Try::Tiny=>q[0], warnings=>q[0], overload=>q[0], Test::More=>q[0], strict=>q[0], Any::Moose=>q[0], POSIX=>q[0], JSON=>q[0], List::MoreUtils=>q[0], UNIVERSAL::require=>q[0], Sys::Hostname=>q[0], Net::STOMP::Client=>q[0] }
 #     VERSION => q[0.001]
-#     test => { TESTS=>q[] }
+#     test => { TESTS=>q[t/*.t] }
 
 # --- MakeMaker post_initialize section:
 
@@ -494,7 +494,8 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'abstract: '\''Background job processing based on Resque, using Stomp'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''William Wolf <throughnothing@gmail.com>'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'build_requires: {}' >> META_new.yml
+	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Test::More: 0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: 6.30' >> META_new.yml
 	$(NOECHO) $(ECHO) 'dynamic_config: 1' >> META_new.yml
@@ -548,7 +549,9 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "prereqs" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '      "build" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '         "requires" : {}' >> META_new.json
+	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '            "Test::More" : 0' >> META_new.json
+	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "configure" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json

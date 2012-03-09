@@ -23,20 +23,14 @@ my %WriteMakefileArgs = (
   "NAME" => "Sque",
   "PREREQ_PM" => {
     "Any::Moose" => 0,
-    "DateTime" => 0,
     "JSON" => 0,
-    "List::MoreUtils" => 0,
     "Net::STOMP::Client" => 0,
-    "POSIX" => 0,
-    "Scalar::Util" => 0,
-    "Sys::Hostname" => 0,
     "Try::Tiny" => 0,
     "UNIVERSAL::require" => 0,
-    "overload" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
