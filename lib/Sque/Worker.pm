@@ -1,6 +1,6 @@
 package Sque::Worker;
 {
-  $Sque::Worker::VERSION = '0.002';
+  $Sque::Worker::VERSION = '0.003';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -30,10 +30,10 @@ sub work {
     while( my $job = $self->sque->pop ) {
         $job->worker($self);
         my $reval = $self->perform($job);
-        $self->stomp->ack( frame => $job->frame );
         if(!$reval){
             #TODO: re-send messages to queue... ABORT messages?
         }
+        $self->stomp->ack( frame => $job->frame );
     }
 }
 
@@ -46,6 +46,7 @@ sub perform {
     }
     catch {
         $self->log( sprintf( "%s failed: %s", $job->stringify, $_ ) );
+        # TODO send to failed queue ?
     };
     $ret;
 }
@@ -91,7 +92,7 @@ Sque::Worker - Does the hard work of babysitting Sque::Job's
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 ATTRIBUTES
 
@@ -122,7 +123,7 @@ This is the main wheel and will run while shutdown() is false.
 Call perform() on the given Sque::Job capturing and reporting
 any exception.
 
-=head2 add_queue
+=head2 add_queues
 
 Add a queue this worker should listen to.
 

@@ -3,8 +3,8 @@ use Sque::Worker;
 
 my $s = Sque->new( stomp => '127.0.0.1:61613' );
 
-$s->push( my_queue => { 
-    class => 't::My::Task', 
+$s->push( my_queue => {
+    class => 'Test::Worker',
     args => [ 'Hello world!' ]
 });
 
