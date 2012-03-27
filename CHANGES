@@ -1,10 +1,57 @@
 ==================================================
-Changes from 2011-03-19 00:00:00 +0000 to present.
+Changes from 2011-03-28 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.003 at 2012-03-18 02:25:28 +0000
+version 0.004 at 2012-03-27 21:36:42 +0000
 ------------------------------------------
+
+  Change: 6e89137e055a60ca680db10490ec1902e0d71fd7
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-27 14:34:33 +0000
+
+    Merge pull request #2 from throughnothing/app
+
+    Add sque command-line tool. 
+
+  Change: 96d7c6dc484b68fe6dc3557f6b9e615f23835aad
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-27 17:32:58 +0000
+
+    Add sque command-line tool.
+
+    This adds the sque command-line tool with support for the work and
+    send commands. It allows running a specified number of workers
+    listening to a number of queues. The send command allows easy sending
+    of messages to squeue workers. 
+
+  Change: 9b1d9a81676bf9e31f3df55fe7e351c9c245f059
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-24 02:14:38 +0000
+
+    Update docs 
+
+  Change: f916d4fd64f432dd22c25a67833c99d72257103e
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-24 02:09:33 +0000
+
+    Remove CHANGES file from repo, we don't need it 
+
+  Change: ca8273b728f995ad742941a23cad850c65a23915
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-24 01:33:13 +0000
+
+    Add TODO 
+
+------------------------------------------
+version 0.003 at 2012-03-18 02:25:38 +0000
+------------------------------------------
+
+  Change: 317a1efc33d4726606bf4ef8edd67abace2e5cd6
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-17 19:25:38 +0000
+
+    v0.003 
 
   Change: 76753a2befd83952e1d0918575364e4645ca8940
   Author: William Wolf <throughnothing@gmail.com>

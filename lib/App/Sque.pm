@@ -1,18 +1,10 @@
-package Sque::Encoder;
+package App::Sque;
 {
-  $Sque::Encoder::VERSION = '0.004';
+  $App::Sque::VERSION = '0.004';
 }
-use Any::Moose 'Role';
-use JSON;
+use App::Cmd::Setup -app;
 
-# ABSTRACT: Any::Moose role for encoding Sque structures
-#
-# =attr encoder
-#
-# JSON encoder by default.
-#
-# =cut
-has encoder => ( is => 'ro', default => sub { JSON->new->utf8 } );
+# ABSTRACT: Sque command-line tool
 
 1;
 
@@ -21,7 +13,7 @@ __END__
 
 =head1 NAME
 
-Sque::Encoder - Any::Moose role for encoding Sque structures
+App::Sque - Sque command-line tool
 
 =head1 VERSION
 

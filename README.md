@@ -4,7 +4,7 @@ Sque - Background job processing based on Resque, using Stomp
 
 # VERSION
 
-version 0.003
+version 0.004
 
 # SYNOPSIS
 
@@ -30,6 +30,10 @@ You can also send by just using:
 In this case, the queue will be set automatically automatically to the
 job class name with colons replaced with hyphens, which in this
 case would be 'My-Task'.
+
+Additionally, the [sque](http://search.cpan.org/perldoc?sque) command-line tool can be used to send messages:
+
+    $ sque send -h 127.0.0.1 -p 61613 -c My::Task 'Hello world!'
 
 Background jobs can be any perl module that implement a perform() function.
 The [Sque::Job](http://search.cpan.org/perldoc?Sque::Job) object is passed as the only argument to this function:
@@ -58,7 +62,7 @@ with the [Sque::Job](http://search.cpan.org/perldoc?Sque::Job) object as the onl
     has attr => ( is => 'ro', default => 'Where am I?' );
 
     sub perform {
-        my ( $self, $job ) = shift;
+        my ( $self, $job ) = @_;
         say $self->attr;
         say $job->args->[0];
     }
@@ -73,6 +77,11 @@ to listen to one or more queues:
     my $w = Sque->new( stomp => '127.0.0.1:61613' )->worker;
     $w->add_queues('my_queue');
     $w->work;
+
+Or you can simply use the [sque](http://search.cpan.org/perldoc?sque) command-line tool which uses [App::Sque](http://search.cpan.org/perldoc?App::Sque)
+like so:
+
+    $ sque work --host 127.0.0.1 --port 61613 --workers 5 --lib ./lib --lib ./lib2 --queues Queue1,Queue2,Queue3
 
 # DESCRIPTION
 
@@ -125,6 +134,13 @@ hashref(see [Sque::Job](http://search.cpan.org/perldoc?Sque::Job)) or string(pay
 # ATTRIBUTES
 
 # HELPER METHODS
+
+# TODO
+
+- Make App::Sque that will let you run sque and just pass it the
+stomp server/port, queue list, lib directories (if needed), and
+number of workers.
+- More (real) tests.
 
 # AUTHOR
 

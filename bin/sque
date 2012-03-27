@@ -1,31 +1,35 @@
-package Sque::Encoder;
+#!/usr/bin/env perl
+package sque;
 {
-  $Sque::Encoder::VERSION = '0.004';
+  $sque::VERSION = '0.004';
 }
-use Any::Moose 'Role';
-use JSON;
+use App::Sque;
 
-# ABSTRACT: Any::Moose role for encoding Sque structures
-#
-# =attr encoder
-#
-# JSON encoder by default.
-#
-# =cut
-has encoder => ( is => 'ro', default => sub { JSON->new->utf8 } );
+# ABSTRACT: Sque command-line tool
 
-1;
+App::Sque->run;
+
 
 __END__
 =pod
 
 =head1 NAME
 
-Sque::Encoder - Any::Moose role for encoding Sque structures
+sque - Sque command-line tool
 
 =head1 VERSION
 
 version 0.004
+
+=head1 SYNOPSIS
+
+This is the sque command line tool.  It can be used to start workers:
+
+    $ sque work --host 127.0.0.1 --port 61613 --workers 5 --lib ./lib --queues Queue1,Queue2,Queue3
+
+or send messages to a queue:
+
+    $ sque send --host 127.0.0.1 --port 61613 --class My::Task --queue Queue1 arg1 arg2 arg3 ...
 
 =head1 AUTHOR
 

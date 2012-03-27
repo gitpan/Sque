@@ -16,8 +16,10 @@ meta-spec:
 name: Sque
 requires:
   Any::Moose: 0
+  App::Cmd::Setup: 0
   JSON: 0
   Net::STOMP::Client: 0
+  Parallel::ForkManager: 0
   Try::Tiny: 0
   UNIVERSAL::require: 0
   strict: 0
@@ -26,4 +28,4 @@ resources:
   bugtracker: https://github.com/throughnothing/Sque/issues
   homepage: http://metacpan.org/release/Sque/
   repository: git://github.com/throughnothing/Sque.git
-version: 0.003
+version: 0.004

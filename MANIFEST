@@ -6,7 +6,11 @@ Makefile.PL
 Makefile.old
 README.md
 README.pod
+bin/sque
 dist.ini
+lib/App/Sque.pm
+lib/App/Sque/Command/send.pm
+lib/App/Sque/Command/work.pm
 lib/Sque.pm
 lib/Sque/Encoder.pm
 lib/Sque/Job.pm

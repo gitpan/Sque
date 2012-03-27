@@ -18,19 +18,23 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => "6.30"
   },
   "DISTNAME" => "Sque",
-  "EXE_FILES" => [],
+  "EXE_FILES" => [
+    "bin/sque"
+  ],
   "LICENSE" => "unrestricted",
   "NAME" => "Sque",
   "PREREQ_PM" => {
     "Any::Moose" => 0,
+    "App::Cmd::Setup" => 0,
     "JSON" => 0,
     "Net::STOMP::Client" => 0,
+    "Parallel::ForkManager" => 0,
     "Try::Tiny" => 0,
     "UNIVERSAL::require" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -1,6 +1,6 @@
 package Sque::Job;
 {
-  $Sque::Job::VERSION = '0.003';
+  $Sque::Job::VERSION = '0.004';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -117,7 +117,7 @@ Sque::Job - Sque job container
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 ATTRIBUTES
 
