@@ -1,6 +1,6 @@
 package Sque::Worker;
 {
-  $Sque::Worker::VERSION = '0.004';
+  $Sque::Worker::VERSION = '0.005';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -26,14 +26,12 @@ has queues => (
 has verbose => ( is => 'rw', default => sub {0} );
 
 sub work {
-    my $self = shift;
+    my ( $self ) = @_;
     while( my $job = $self->sque->pop ) {
         $job->worker($self);
         my $reval = $self->perform($job);
-        if(!$reval){
-            #TODO: re-send messages to queue... ABORT messages?
-        }
-        $self->stomp->ack( frame => $job->frame );
+        #TODO: re-send messages to queue... ABORT messages?
+        # if(!$reval){ }
     }
 }
 
@@ -48,7 +46,13 @@ sub perform {
         $self->log( sprintf( "%s failed: %s", $job->stringify, $_ ) );
         # TODO send to failed queue ?
     };
+    $self->stomp->ack({ frame => $job->frame });
     $ret;
+}
+
+sub reserve {
+    my ( $self ) = @_;
+    return $self->sque->pop;
 }
 
 sub add_queues {
@@ -61,6 +65,7 @@ sub add_queues {
             $self->_subscribe_queue( $queue );
         }
     }
+    $self;
 }
 
 sub log {
@@ -71,11 +76,10 @@ sub log {
 
 sub _subscribe_queue {
     my ( $self, $q ) = @_;
-    $self->stomp->subscribe(
+    $self->stomp->subscribe( {
         destination => $q,
-        id          => $q,
         ack         => 'client',
-    );
+    } );
 };
 
 __PACKAGE__->meta->make_immutable();
@@ -92,7 +96,7 @@ Sque::Worker - Does the hard work of babysitting Sque::Job's
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 ATTRIBUTES
 
@@ -122,6 +126,10 @@ This is the main wheel and will run while shutdown() is false.
 
 Call perform() on the given Sque::Job capturing and reporting
 any exception.
+
+=head2 reserve
+
+Call reserve() to return the next job popped of the queue(s)
 
 =head2 add_queues
 

@@ -1,6 +1,6 @@
 package Sque::Job;
 {
-  $Sque::Job::VERSION = '0.004';
+  $Sque::Job::VERSION = '0.005';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -47,7 +47,7 @@ has payload => (
     lazy => 1,
     default => sub {{
         class => $_[0]->class,
-        args => $_[0]->args
+        args => $_[0]->args,
     }},
     trigger => sub {
         my ( $self, $hr ) = @_;
@@ -117,7 +117,7 @@ Sque::Job - Sque job container
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 ATTRIBUTES
 

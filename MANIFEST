@@ -18,4 +18,7 @@ lib/Sque/Worker.pm
 old.pl
 t/00-load.t
 t/01-namespace.t
+t/02-worker.t
+t/lib/Test/SpawnMq.pm
 t/lib/Test/Worker.pm
+t/lib/Test/WorkerMoose.pm

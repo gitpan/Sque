@@ -1,9 +1,39 @@
 ==================================================
-Changes from 2011-03-28 00:00:00 +0000 to present.
+Changes from 2011-04-26 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.004 at 2012-03-27 21:36:42 +0000
+version 0.005 at 2012-04-25 04:10:06 +0000
+------------------------------------------
+
+  Change: 49457c7114605af6799322c79d2ca0ba33f735b6
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-04-24 21:06:35 +0000
+
+    Merge pull request #3 from throughnothing/net-stomp
+
+    Change Net::STOMP::Client => Net::Stomp 
+
+  Change: ea42590e66545a3b645122230b407f9b260ba07c
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-04-24 23:59:54 +0000
+
+    Add some more tests. 
+
+  Change: dbfd381de286bab00a0ccf67557b866d992c1b8a
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-04-24 21:36:32 +0000
+
+    Move to Net::Stomp from Net::STOMP::Client. 
+
+  Change: 1e7d921047e4c4302657c310ccdabffea61bb23f
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-03-28 08:49:43 +0000
+
+    Fix error in documentation 
+
+------------------------------------------
+version 0.004 at 2012-03-27 21:34:33 +0000
 ------------------------------------------
 
   Change: 6e89137e055a60ca680db10490ec1902e0d71fd7
