@@ -1,6 +1,6 @@
 package App::Sque::Command::work;
 {
-  $App::Sque::Command::work::VERSION = '0.005';
+  $App::Sque::Command::work::VERSION = '0.006';
 }
 use App::Sque -command;
 use Parallel::ForkManager;
@@ -68,7 +68,7 @@ App::Sque::Command::work - Worker command for sque command-line tool
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 AUTHOR
 

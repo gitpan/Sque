@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Sque;
 {
-  $Sque::VERSION = '0.005';
+  $Sque::VERSION = '0.006';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -99,7 +99,7 @@ Sque - Background job processing based on Resque, using Stomp
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 

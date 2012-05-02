@@ -33,4 +33,4 @@ resources:
   bugtracker: https://github.com/throughnothing/Sque/issues
   homepage: http://metacpan.org/release/Sque/
   repository: git://github.com/throughnothing/Sque.git
-version: 0.005
+version: 0.006

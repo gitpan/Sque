@@ -1,9 +1,23 @@
 ==================================================
-Changes from 2011-04-26 00:00:00 +0000 to present.
+Changes from 2011-05-03 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.005 at 2012-04-25 04:10:06 +0000
+version 0.006 at 2012-05-02 16:23:45 +0000
+------------------------------------------
+
+  Change: 850ac2edeb936fa1211235d35b26d06114d76738
+  Author: William Wolf <throughnothing@gmail.com>
+  Date : 2012-05-02 12:23:00 +0000
+
+    Add more sleep to SpawnMQ
+
+    This will give the tests more time to leat the mq.pl startup and get
+    listening. I think that was causing test failures on a lot of systems
+    where sleep 1 wasn't long enough. 
+
+------------------------------------------
+version 0.005 at 2012-04-25 04:06:35 +0000
 ------------------------------------------
 
   Change: 49457c7114605af6799322c79d2ca0ba33f735b6
