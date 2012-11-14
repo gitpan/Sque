@@ -1,6 +1,6 @@
 package Sque::Worker;
 {
-  $Sque::Worker::VERSION = '0.007';
+  $Sque::Worker::VERSION = '0.008';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -96,7 +96,7 @@ Sque::Worker - Does the hard work of babysitting Sque::Job's
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 ATTRIBUTES
 

@@ -3,9 +3,9 @@ LICENSE
 MANIFEST
 META.yml
 Makefile.PL
-Makefile.old
 README.md
 README.pod
+TODO.md
 bin/sque
 dist.ini
 lib/App/Sque.pm
@@ -15,10 +15,10 @@ lib/Sque.pm
 lib/Sque/Encoder.pm
 lib/Sque/Job.pm
 lib/Sque/Worker.pm
-old.pl
 t/00-load.t
 t/01-namespace.t
 t/02-worker.t
+t/03-failover.t
 t/lib/Test/SpawnMq.pm
 t/lib/Test/Worker.pm
 t/lib/Test/WorkerMoose.pm
