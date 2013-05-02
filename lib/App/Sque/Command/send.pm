@@ -1,6 +1,6 @@
 package App::Sque::Command::send;
 {
-  $App::Sque::Command::send::VERSION = '0.008';
+  $App::Sque::Command::send::VERSION = '0.009';
 }
 use App::Sque -command;
 use Sque;
@@ -54,7 +54,7 @@ App::Sque::Command::send - Send command for sque command-line tool
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 AUTHOR
 

@@ -1,6 +1,6 @@
 package App::Sque;
 {
-  $App::Sque::VERSION = '0.008';
+  $App::Sque::VERSION = '0.009';
 }
 use App::Cmd::Setup -app;
 
@@ -17,7 +17,7 @@ App::Sque - Sque command-line tool
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 AUTHOR
 

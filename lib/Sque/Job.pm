@@ -1,6 +1,6 @@
 package Sque::Job;
 {
-  $Sque::Job::VERSION = '0.008';
+  $Sque::Job::VERSION = '0.009';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -54,6 +54,12 @@ has payload => (
         $self->class( $hr->{class} );
         $self->args( $hr->{args} ) if $hr->{args};
     }
+);
+
+has headers => (
+    is => 'rw',
+    isa => 'HashRef',
+    default => sub{ {} },
 );
 
 has frame => (
@@ -117,7 +123,7 @@ Sque::Job - Sque job container
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 ATTRIBUTES
 

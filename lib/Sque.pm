@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Sque;
 {
-  $Sque::VERSION = '0.008';
+  $Sque::VERSION = '0.009';
 }
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
@@ -75,6 +75,7 @@ sub push {
         persistent => 'true',
         destination => $self->key( $queue ),
         body => $job->encode,
+        %{ $job->headers },
     } );
 }
 
@@ -120,7 +121,7 @@ Sque - Background job processing based on Resque, using Stomp
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -148,6 +149,14 @@ You can also send by just using:
 In this case, the queue will be set automatically automatically to the
 job class name with colons removed, which in this
 case would be 'MyTask'.
+
+You can set custom C<STOMP> headers by passing them in as follows:
+
+    $s->push( my_queue => {
+        class => 'My::Task',
+        args => [ 'Hello world!' ],
+        headers => { header1 => 'val1', header2 => 'val2' }
+    });
 
 Additionally, the L<sque> command-line tool can be used to send messages:
 

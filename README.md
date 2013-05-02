@@ -4,7 +4,7 @@ Sque - Background job processing based on Resque, using Stomp
 
 # VERSION
 
-version 0.008
+version 0.009
 
 # SYNOPSIS
 
@@ -32,6 +32,14 @@ You can also send by just using:
 In this case, the queue will be set automatically automatically to the
 job class name with colons removed, which in this
 case would be 'MyTask'.
+
+You can set custom `STOMP` headers by passing them in as follows:
+
+    $s->push( my_queue => {
+        class => 'My::Task',
+        args => [ 'Hello world!' ],
+        headers => { header1 => 'val1', header2 => 'val2' }
+    });
 
 Additionally, the [sque](http://search.cpan.org/perldoc?sque) command-line tool can be used to send messages:
 
@@ -128,7 +136,7 @@ Returns a l<Sque::Job> object.
 Concatenate `$self-`namespace> with the received array of names
 to build a redis key name for this sque instance.
 
-## new_job
+## new\_job
 
 Build a [Sque::Job](http://search.cpan.org/perldoc?Sque::Job) object on this system for the given
 hashref(see [Sque::Job](http://search.cpan.org/perldoc?Sque::Job)) or string(payload for object).
