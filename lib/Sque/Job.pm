@@ -1,7 +1,5 @@
 package Sque::Job;
-{
-  $Sque::Job::VERSION = '0.009';
-}
+$Sque::Job::VERSION = '0.010';
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
 use UNIVERSAL::require;
@@ -29,7 +27,8 @@ has class => (
 );
 
 has queue => (
-    is => 'rw', lazy => 1,
+    is => 'rw',
+    lazy => 1,
     default => \&queue_from_class,
     predicate => 'queued'
 );
@@ -113,9 +112,11 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -123,7 +124,7 @@ Sque::Job - Sque job container
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 ATTRIBUTES
 
@@ -194,4 +195,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-

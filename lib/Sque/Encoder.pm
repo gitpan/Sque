@@ -1,7 +1,5 @@
 package Sque::Encoder;
-{
-  $Sque::Encoder::VERSION = '0.009';
-}
+$Sque::Encoder::VERSION = '0.010';
 use Any::Moose 'Role';
 use JSON;
 
@@ -17,7 +15,10 @@ has encoder => ( is => 'ro', default => sub { JSON->new->utf8 } );
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -25,7 +26,7 @@ Sque::Encoder - Any::Moose role for encoding Sque structures
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 AUTHOR
 
@@ -43,4 +44,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-

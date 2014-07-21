@@ -1,7 +1,5 @@
 package Sque::Worker;
-{
-  $Sque::Worker::VERSION = '0.009';
-}
+$Sque::Worker::VERSION = '0.010';
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
 use Try::Tiny;
@@ -9,6 +7,10 @@ use Try::Tiny;
 with 'Sque::Encoder';
 
 # ABSTRACT: Does the hard work of babysitting Sque::Job's
+
+has _dying => (is => 'rw', default => 0);
+
+has logger => (is => 'rw');
 
 has sque => (
     is => 'ro',
@@ -25,13 +27,25 @@ has queues => (
 
 has verbose => ( is => 'rw', default => sub {0} );
 
+sub BUILD {
+    my ($self) = @_;
+
+    my $die_handler = sub {
+        my ($signal) = @_;
+        $self->log("Received $signal signal, dying...");
+        $self->_dying(1);
+    };
+
+    # Setup die handlers
+    $SIG{$_} = $die_handler for qw(INT TERM KILL QUIT)
+}
+
 sub work {
     my ( $self ) = @_;
     while( my $job = $self->sque->pop ) {
         $job->worker($self);
         my $reval = $self->perform($job);
-        #TODO: re-send messages to queue... ABORT messages?
-        # if(!$reval){ }
+        exit 0 if $self->_dying;
     }
 }
 
@@ -41,13 +55,11 @@ sub perform {
     try {
         $ret = $job->perform;
         $self->log( sprintf( "done: %s", $job->stringify ) );
-    }
-    catch {
+    } catch {
         $self->log( sprintf( "%s failed: %s", $job->stringify, $_ ) );
-        # TODO send to failed queue ?
     };
     $self->stomp->ack({ frame => $job->frame });
-    $ret;
+    return $ret;
 }
 
 sub reserve {
@@ -65,13 +77,12 @@ sub add_queues {
             $self->_subscribe_queue( $queue );
         }
     }
-    $self;
+    return $self;
 }
 
 sub log {
     my $self = shift;
-    return unless $self->verbose;
-    print STDERR shift, "\n";
+    $self->logger->DEBUG(@_) if $self->verbose and $self->logger;
 }
 
 sub _subscribe_queue {
@@ -86,9 +97,11 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -96,7 +109,7 @@ Sque::Worker - Does the hard work of babysitting Sque::Job's
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 ATTRIBUTES
 
@@ -155,4 +168,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-

@@ -1,7 +1,5 @@
 package App::Sque::Command::send;
-{
-  $App::Sque::Command::send::VERSION = '0.009';
-}
+$App::Sque::Command::send::VERSION = '0.010';
 use App::Sque -command;
 use Sque;
 
@@ -46,7 +44,10 @@ sub execute {
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -54,7 +55,7 @@ App::Sque::Command::send - Send command for sque command-line tool
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 AUTHOR
 
@@ -72,4 +73,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-

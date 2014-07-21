@@ -1,9 +1,7 @@
 use strict;
 use warnings;
 package Sque;
-{
-  $Sque::VERSION = '0.009';
-}
+$Sque::VERSION = '0.010';
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
 use Net::Stomp;
@@ -111,9 +109,11 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -121,7 +121,7 @@ Sque - Background job processing based on Resque, using Stomp
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -290,4 +290,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-

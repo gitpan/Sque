@@ -1,17 +1,17 @@
 #!/usr/bin/env perl
 package sque;
-{
-  $sque::VERSION = '0.009';
-}
+$sque::VERSION = '0.010';
 use App::Sque;
 
 # ABSTRACT: Sque command-line tool
 
 App::Sque->run;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -19,7 +19,7 @@ sque - Sque command-line tool
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -47,4 +47,3 @@ Works under CC0 do not require attribution. When citing the work, you should
 not imply endorsement by the author.
 
 =cut
-
